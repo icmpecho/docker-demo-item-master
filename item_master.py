@@ -22,4 +22,5 @@ def get_item_name(item_id):
 @app.route('/items/<item_id>', methods=['GET'])
 def get_item(item_id):
     item_name = get_item_name(item_id)
+    print("GET <id: {}> Returns item_name={}".format(item_id, item_name))
     return jsonify(itemId=item_id, itemName=item_name)
