@@ -11,11 +11,11 @@ r = StrictRedis(host=redis_host, port=6379, db=0)
 def get_item_name(item_id):
     item_key = "item_master:{}".format(item_id)
     item_name = r.get(item_key)
-    if not item_name:
+    if item_name:
+        item_name = item_name.decode('utf-8')
+    else:
         item_name = fake.word()
         r.set(item_key, item_name)
-    else:
-        item_name = item_name.decode('utf-8')
     return item_name
 
 
